@@ -1,10 +1,12 @@
-var VideoList = () => (
+//{props.videos[0].kind}
+
+var VideoList = (props) => (
   <div className="video-list">
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
+    <div><h5><em>{props.videos[0].snippet.title}</em> view goes here</h5></div>
+    <div><h5><em>{props.videos[1].snippet.title}</em> view goes here</h5></div>
+    <div><h5><em>{props.videos[2].snippet.title}</em> view goes here</h5></div>
+    <div><h5><em>{props.videos[3].snippet.title}</em> view goes here</h5></div>
+    <div><h5><em>{props.videos[4].snippet.title}</em> view goes here</h5></div>
   </div>
 );
 
