@@ -3,24 +3,39 @@ import exampleVideoData from "../data/exampleVideoData.js"; //exampleVideoData o
 import VideoList from "../components/VideoList.js";
 import VideoPlayer from "../components/VideoPlayer.js";
 
-console.log(VideoList);
-var App = () => (
-  <div>
-    <nav className="navbar">
-      <div className="col-md-6 offset-md-3">
-        <div><h5><em>search</em> view goes here</h5></div>
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      videoList: exampleVideoData,
+      currentVideo: exampleVideoData[0],
+    }
+  }
+
+ 
+
+  render() {
+    return (
+      <div>
+        <nav className="navbar">
+          <div className="col-md-6 offset-md-3">
+            <div><h5><em>search</em> view goes here</h5></div>
+          </div>
+        </nav>
+        <div className="row">
+          <div className="col-md-7">
+            <div><h5><VideoPlayer video={this.state.currentVideo} /></h5></div>
+          </div>
+          <div className="col-md-5">
+            <div><h5><VideoList videos={this.state.videoList}/></h5></div>
+          </div>
+        </div>
       </div>
-    </nav>
-    <div className="row">
-      <div className="col-md-7">
-        <div><h5><em><VideoPlayer video={exampleVideoData[0]} /></em> view goes here</h5></div>
-      </div>
-      <div className="col-md-5">
-        <div><h5><em><VideoList videos={exampleVideoData}/></em> view goes here</h5></div>
-      </div>
-    </div>
-  </div>
-);
+    )
+  }
+}
+
 
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
