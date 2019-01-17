@@ -1,12 +1,10 @@
-//{props.videos[0].kind}
+import VideoListEntry from "../components/VideoListEntry.js" //we may need to move this to App.jsx.
 
 var VideoList = (props) => (
   <div className="video-list">
-    <div><h5><em>{props.videos[0].snippet.title}</em> view goes here</h5></div>
-    <div><h5><em>{props.videos[1].snippet.title}</em> view goes here</h5></div>
-    <div><h5><em>{props.videos[2].snippet.title}</em> view goes here</h5></div>
-    <div><h5><em>{props.videos[3].snippet.title}</em> view goes here</h5></div>
-    <div><h5><em>{props.videos[4].snippet.title}</em> view goes here</h5></div>
+    {props.videos.map(item =>
+      <VideoListEntry video={item}/>
+    )}
   </div>
 );
 
@@ -19,3 +17,11 @@ VideoList.propTypes = {
 // In the ES6 spec, files are "modules" and do not share a top-level scope.
 // `var` declarations will only exist globally where explicitly defined.
 export default VideoList;
+
+/*
+    <div><h5><em></em>  view goes here</h5></div>
+    <div><h5><em><VideoListEntry video={videos[0]}/></em> view goes here</h5></div>
+    <div><h5><em>{props.videos[2].snippet.title}</em> view goes here</h5></div>
+    <div><h5><em>{props.videos[3].snippet.title}</em> view goes here</h5></div>
+    <div><h5><em>{props.videos[4].snippet.title}</em> view goes here</h5></div>
+*/
