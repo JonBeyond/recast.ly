@@ -2,6 +2,7 @@ import exampleVideoData from "../data/exampleVideoData.js"; //exampleVideoData o
 //this example data will eventually be sent into videoList.jsx
 import VideoList from "../components/VideoList.js";
 import VideoPlayer from "../components/VideoPlayer.js";
+import VideoListEntry from "./VideoListEntry.js"
 
 class App extends React.Component {
   constructor(props) {
@@ -11,8 +12,15 @@ class App extends React.Component {
       videoList: exampleVideoData,
       currentVideo: exampleVideoData[0],
     }
+    this.changeVideo = this.changeVideo.bind(this); //dont ever forget!!!!! never forget!!!! 
   }
 
+  changeVideo(video) { //move to App???
+    console.log(video);
+    // this.setState({
+    //   currentVideo: video
+    // });
+  }
  
 
   render() {
@@ -28,7 +36,7 @@ class App extends React.Component {
             <div><h5><VideoPlayer video={this.state.currentVideo} /></h5></div>
           </div>
           <div className="col-md-5">
-            <div><h5><VideoList videos={this.state.videoList}/></h5></div>
+            <div><h5><VideoList videos={this.state.videoList} changeVideo={this.changeVideo}/></h5></div>
           </div>
         </div>
       </div>

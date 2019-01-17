@@ -7,18 +7,21 @@ var VideoListEntry = (props) => {
           <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
         </div>
         <div className="media-body">
-          <div className="video-list-entry-title" onClick={changeVideo(props.video)}>{props.video.snippet.title}</div>
+          <div className="video-list-entry-title" onClick={() => this.changeVideo(props.video)}>{props.video.snippet.title}</div>
           <div className="video-list-entry-detail">{props.video.snippet.description}</div>
         </div>
       </div>
     )
-}
+};
 
-var changeVideo = (video) => { //move to App???
-  App.setState({
-    currentVideo: video
-  });
-}
+// props.changeVideo.bind(null, props.video)
+
+//  var changeVideo = (video) => { //move to App???
+//    console.log(App.state);
+// //   App.setState({
+// //     currentVideo: video
+// //   });
+//  }
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
