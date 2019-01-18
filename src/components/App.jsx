@@ -3,6 +3,8 @@ import exampleVideoData from "../data/exampleVideoData.js"; //exampleVideoData o
 import VideoList from "../components/VideoList.js";
 import VideoPlayer from "../components/VideoPlayer.js";
 import VideoListEntry from "./VideoListEntry.js"
+import YOUR_API_KEY from "../config/youtube.js  "
+
 
 class App extends React.Component {
   constructor(props) {
@@ -12,23 +14,22 @@ class App extends React.Component {
       videoList: exampleVideoData,
       currentVideo: exampleVideoData[0],
     }
-    this.changeVideo = this.changeVideo.bind(this); //dont ever forget!!!!! never forget!!!! 
+    // this.changeVideo = this.changeVideo.bind(this); //use the arrow function instead
   }
 
-  changeVideo(video) { //move to App???
-    console.log(video);
-    // this.setState({
-    //   currentVideo: video
-    // });
+
+  changeVideo = (video) => { //move to App???
+    this.setState({
+      currentVideo: video
+    });
   }
  
-
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> view goes here</h5></div>
+            <div><h5> click for search</h5></div>
           </div>
         </nav>
         <div className="row">
