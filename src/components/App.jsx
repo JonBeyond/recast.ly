@@ -1,9 +1,11 @@
-import exampleVideoData from "../data/exampleVideoData.js"; //exampleVideoData object
+import exampleVideoData from "../data/exampleVideoData.js"; //exampleVideoData object.
+//We need to replace this with search results eventually.
 //this example data will eventually be sent into videoList.jsx
-import VideoList from "../components/VideoList.js";
-import VideoPlayer from "../components/VideoPlayer.js";
-import VideoListEntry from "./VideoListEntry.js"
-import YOUR_API_KEY from "../config/youtube.js  "
+import searchYouTube from "../lib/searchYouTube.js";
+import VideoList from "./VideoList.js";
+import VideoPlayer from "./VideoPlayer.js";
+import VideoListEntry from "./VideoListEntry.js";
+import YOUR_API_KEY from "../config/youtube.js";
 
 
 class App extends React.Component {
@@ -13,17 +15,25 @@ class App extends React.Component {
     this.state = {
       videoList: exampleVideoData,
       currentVideo: exampleVideoData[0],
-    }
+    };
+
     // this.changeVideo = this.changeVideo.bind(this); //use the arrow function instead
   }
 
 
-  changeVideo = (video) => { //move to App???
+  changeVideo(video) { //move to App???
     this.setState({
       currentVideo: video
     });
   }
- 
+
+  changeLists(videos) {
+    this.setState({
+      currentVideo: videos[0],
+      videoList: videos
+    });
+  }
+
   render() {
     return (
       <div>
@@ -42,6 +52,22 @@ class App extends React.Component {
         </div>
       </div>
     )
+  }
+
+  componentDidMount() { //this is invoked immediately after render()
+    //in here we want to call the search results from the search function,
+    //and then change the state of videoList after the search has completed.
+    //Important to keep in mind that this operation is async, so I may need to
+    //utilize callbacks
+    //searchYouTube = (options, callback)
+    //need to define some initial options, or pass null
+    //the callback function will receive the video lists
+    console.log('all components mounted');
+    var searchCallback = (videos) => {
+      console.log('component callback initiated; changing state')
+      this.changeLists(videos.items);
+    }
+    searchYouTube(null, searchCallback);
   }
 }
 

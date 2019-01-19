@@ -2,9 +2,12 @@ import YOUR_API_KEY from "../config/youtube.js  "
 
 
 var searchYouTube = (options, callback) => {
-  // console.log("options:")
-  // console.log(options);
-
+  options = options || {
+    q: 'crazy cats',
+    max: 5,
+    key: YOUR_API_KEY
+  }; //set a default search option
+  console.log("Querying google API");
   $.get('https://www.googleapis.com/youtube/v3/search', {
     key: options.key,
     q: options.query,
@@ -13,7 +16,7 @@ var searchYouTube = (options, callback) => {
     type: 'video',
     videoEmbeddable: 'true'
   }, (videos) => {
-    console.log("success!!!")
+    console.log('Google API link success! Received:')
     console.log(videos);
     callback(videos);
   });
