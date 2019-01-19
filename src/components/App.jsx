@@ -13,8 +13,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      videoList: exampleVideoData,
-      currentVideo: exampleVideoData[0],
+      videoList: exampleVideoData, //lets keep exampleData, in case the internet is down.
+      currentVideo: exampleVideoData[0], //the page will still display, kind of.
     };
 
     // this.changeVideo = this.changeVideo.bind(this); //use the arrow function instead
@@ -63,6 +63,10 @@ class App extends React.Component {
     //need to define some initial options, or pass null
     //the callback function will receive the video lists
     console.log('all components mounted');
+
+    //var boundUpdate = this.changeLists.bind(this); //this is where i left off - there is a problem with the callback
+    // below, this.changeLists is not defined.  Can fix this later!
+
     var searchCallback = (videos) => {
       console.log('component callback initiated; changing state')
       this.changeLists(videos.items);
